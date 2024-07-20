@@ -23,5 +23,20 @@ button1.pack(pady=10)
 button2.pack(pady=10)
 button3.pack(pady=10)
 
+# Set the window size
+window_width = 300
+window_height = 200
+
+# Get the screen dimensions
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+
+# Calculate the position for the window to be centered
+position_x = (screen_width // 2) - (window_width // 2)
+position_y = (screen_height // 2) - (window_height // 2)
+
+# Set the geometry of the window
+root.geometry(f'{window_width}x{window_height}+{position_x}+{position_y}')
+
 # Run the application
 root.mainloop()
