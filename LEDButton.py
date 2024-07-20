@@ -1,13 +1,13 @@
 import tkinter as tk
 
-def button1_click():
-    print("Button 1 clicked")
+def red_button_click():
+    print("Red button clicked")
 
-def button2_click():
-    print("Button 2 clicked")
+def green_button_click():
+    print("Green button clicked")
 
-def button3_click():
-    print("Button 3 clicked")
+def blue_button_click():
+    print("Blue button clicked")
 
 def toggle_on_off():
     if on_off_button.config('text')[-1] == 'Off':
@@ -40,18 +40,18 @@ root.geometry(f'{window_width}x{window_height}+{position_x}+{position_y}')
 header = tk.Label(root, text="Illuminating Connectivity", font=("Arial", 16))
 header.pack(pady=10)
 
-# Create buttons and assign them to the functions
-button1 = tk.Button(root, text="Button 1", command=button1_click)
-button2 = tk.Button(root, text="Button 2", command=button2_click)
-button3 = tk.Button(root, text="Button 3", command=button3_click)
+# Create buttons and assign them to the functions, with respective colors
+red_button = tk.Button(root, text="Red", command=red_button_click, fg="red", activebackground="black", activeforeground="black", width=20, height=2)
+green_button = tk.Button(root, text="Green", command=green_button_click, bg="green", fg="green", activebackground="black", activeforeground="black", width=20, height=2)
+blue_button = tk.Button(root, text="Blue", command=blue_button_click, bg="blue", fg="blue", activebackground="black", activeforeground="black", width=20, height=2)
 
 # Pack the buttons into the window
-button1.pack(pady=10)
-button2.pack(pady=10)
-button3.pack(pady=10)
+red_button.pack(pady=10)
+green_button.pack(pady=10)
+blue_button.pack(pady=10)
 
 # Create an On/Off button
-on_off_button = tk.Button(root, text="Off", command=toggle_on_off)
+on_off_button = tk.Button(root, text="Off", command=toggle_on_off, width=20, height=2)
 on_off_button.pack(pady=10)
 
 # Run the application
