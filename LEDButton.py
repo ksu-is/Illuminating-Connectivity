@@ -1,21 +1,74 @@
 import tkinter as tk
+import http.client
+import json
+
+def post_light_status(color, is_on, onoff_id):
+    # Define the host and endpoint
+    host = "techbutler.tech"
+    endpoint = "/ard/Service1.svc/ChangeLightStatus"
+
+    # Data to be sent in the POST request
+    data = {
+        "color": color,
+        "isOn": is_on,
+        "onoffID": onoff_id
+    }
+
+    # Convert data to JSON
+    json_data = json.dumps(data)
+
+    # Create a connection
+    conn = http.client.HTTPConnection(host)
+
+    # Define headers
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    # Send POST request
+    conn.request("POST", endpoint, body=json_data, headers=headers)
+
+    # Get the response
+    response = conn.getresponse()
+    status = response.status
+    reason = response.reason
+    response_content = response.read().decode()
+
+    # Close the connection
+    conn.close()
+
+    # Return response details
+    return {
+        "status": status,
+        "reason": reason,
+        "content": response_content
+    }
+
+# Example usage:
+result = post_light_status("String content", True, 2147483647)
+print("Response:", result)
 
 def red_button_click():
     print("Red button clicked")
+    post_light_status("red", True, 1)
 
 def green_button_click():
     print("Green button clicked")
+    post_light_status("green", True, 1)
 
 def blue_button_click():
     print("Blue button clicked")
+    post_light_status("blue", True, 1)
 
 def toggle_on_off():
     if on_off_button.config('text')[-1] == 'Off':
         on_off_button.config(text='On')
         print("Turned On")
+        post_light_status("red", True, 1)
     else:
         on_off_button.config(text='Off')
         print("Turned Off")
+        post_light_status("red", False, 1)
 
 # Create the main window
 root = tk.Tk()
